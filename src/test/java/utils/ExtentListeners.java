@@ -1,7 +1,5 @@
 package utils;
 
-import java.util.Date;
-
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -18,10 +16,10 @@ import BaseTest.BaseT;
 
 public class ExtentListeners extends BaseT implements ITestListener {
 
-	static Date d = new Date();
-	static String fileName = "Extent_" + d.toString().replace(":", "_").replace(" ", "_") + ".html";
+//	static Date d = new Date();
+//	static String fileName = "Extent_" + d.toString().replace(":", "_").replace(" ", "_") + ".html";
 
-	private static ExtentReports extent = ExtentManager.createInstance("./reports/" + fileName);
+	private static ExtentReports extent = ExtentManager.createInstance("./reports/");
 
 	public static ThreadLocal<ExtentTest> testReport = new ThreadLocal<>();
 
