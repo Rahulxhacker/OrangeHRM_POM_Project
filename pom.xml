@@ -89,7 +89,7 @@
 				<version>3.2.5</version>
 				<configuration>
 					<suiteXmlFiles>
-						<suiteXmlFile>OrangeHRM.xml</suiteXmlFile>
+						<suiteXmlFile>src/test/resources/runners/OrangeHRM.xml</suiteXmlFile>
 					</suiteXmlFiles>
 					<parallel>tests</parallel>
 					<threadCount>3</threadCount>
