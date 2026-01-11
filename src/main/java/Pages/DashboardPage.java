@@ -21,6 +21,9 @@ public class DashboardPage extends BaseP {
 	@FindBy(xpath = "//span[text() = 'Admin']")
 	public WebElement adminMenu;
 
+	@FindBy(xpath = "//span[@class='oxd-text oxd-text--span oxd-main-menu-item--name'][normalize-space()='Directory']")
+	public WebElement directoryMenu;
+
 	public boolean isDashboardDisplayed() {
 		return dashBoard.isDisplayed();
 	}
@@ -34,6 +37,11 @@ public class DashboardPage extends BaseP {
 		adminMenu.click();
 
 		return new AdminPage(driver);
+	}
+
+	public DirectoryPage clickDirectory() {
+		directoryMenu.click();
+		return new DirectoryPage(driver);
 	}
 
 }

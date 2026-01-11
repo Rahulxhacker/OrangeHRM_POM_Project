@@ -26,6 +26,7 @@ public class LoginPage extends BaseP {
 	public WebElement errMsg;
 
 	public DashboardPage doLogin(String userName, String passWord) {
+
 		uName.sendKeys(userName);
 		uPass.sendKeys(passWord);
 		lgnBtn.click();
