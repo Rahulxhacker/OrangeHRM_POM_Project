@@ -14,7 +14,7 @@ import utils.DataProviderUtil;
 public class PIMTest extends BaseT {
 
 	@Test(dataProviderClass = DataProviderUtil.class, dataProvider = "dp")
-	public void verifyAddEmployee(Hashtable<String, String> data) {
+	public void verifyAddEmployee(Hashtable<String, String> data) throws InterruptedException {
 		LoginPage loginPage = new LoginPage(getDriver());
 		loginPage.doLogin(data.get("uName"), data.get("uPass"));
 
