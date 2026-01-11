@@ -27,10 +27,11 @@ public class PIMPage extends BaseP {
 	@FindBy(xpath = "//a[normalize-space()='Personal Details']")
 	public WebElement personalDetailHeader;
 
-	public PIMPage addEmployee(String fname, String lname) {
+	public PIMPage addEmployee(String fname, String lname) throws InterruptedException {
 		addEmpbtn.click();
 		firstName.sendKeys(fname);
 		lastName.sendKeys(lname);
+		Thread.sleep(2000);
 		saveBtn.click();
 		return this;
 	}
