@@ -81,5 +81,21 @@
 
 	</dependencies>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.2.5</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>OrangeHRM.xml</suiteXmlFile>
+					</suiteXmlFiles>
+					<parallel>tests</parallel>
+					<threadCount>3</threadCount>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
