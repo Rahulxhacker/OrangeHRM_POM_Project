@@ -9,7 +9,6 @@ import java.util.Map;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -17,7 +16,7 @@ import utils.ExcelReader;
 
 public class BaseT {
 
-	public static ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<RemoteWebDriver>();
+	public static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 	public ExcelReader excel = new ExcelReader(
 			"C:\\Users\\Rahul Kashyap\\eclipse-workspace\\OrangeHRM_POM\\src\\test\\resources\\excel\\OrangeHRM_Data.xlsx");
 
