@@ -91,8 +91,6 @@
 					<suiteXmlFiles>
 						<suiteXmlFile>src/test/resources/runners/OrangeHRM.xml</suiteXmlFile>
 					</suiteXmlFiles>
-					<parallel>tests</parallel>
-					<threadCount>3</threadCount>
 				</configuration>
 			</plugin>
 		</plugins>

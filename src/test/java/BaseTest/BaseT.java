@@ -1,13 +1,13 @@
 package BaseTest;
 
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
@@ -40,8 +40,8 @@ public class BaseT {
 		ops.setExperimentalOption("prefs", prefs);
 		ops.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
 
-		driver.set(new RemoteWebDriver(URI.create("http://192.168.47.116:4444/wd/hub").toURL(), ops));
-
+//		driver.set(new RemoteWebDriver(URI.create("http://192.168.47.116:4444/wd/hub").toURL(), ops));
+		driver.set(new ChromeDriver(ops));
 		getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		getDriver().manage().window().maximize();
 		getDriver().get("https://opensource-demo.orangehrmlive.com/");
