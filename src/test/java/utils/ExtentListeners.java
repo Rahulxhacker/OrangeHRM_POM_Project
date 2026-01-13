@@ -16,55 +16,63 @@ import BaseTest.BaseT;
 
 public class ExtentListeners extends BaseT implements ITestListener {
 
-//	static Date d = new Date();
-//	static String fileName = "Extent_" + d.toString().replace(":", "_").replace(" ", "_") + ".html";
+	private static ExtentReports extent = ExtentManager.getExtentReports();
 
-	private static ExtentReports extent = ExtentManager
-			.createInstance(System.getProperty("user.dir") + "/reports/index.html");
+	private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
-	public static ThreadLocal<ExtentTest> testReport = new ThreadLocal<>();
-
+	// 🚀 Test Started
 	@Override
 	public void onTestStart(ITestResult result) {
 
-		ExtentTest test = extent
-				.createTest(result.getTestClass().getName() + " :: " + result.getMethod().getMethodName());
-		testReport.set(test);
+		String testName = result.getTestClass().getName() + " :: " + result.getMethod().getMethodName();
+
+		ExtentTest extentTest = extent.createTest(testName);
+		test.set(extentTest);
 	}
 
+	// ✅ Test Passed
 	@Override
 	public void onTestSuccess(ITestResult result) {
 
 		Markup m = MarkupHelper.createLabel("TEST CASE PASSED", ExtentColor.GREEN);
-		testReport.get().pass(m);
+
+		test.get().log(Status.PASS, m);
 	}
 
+	// ❌ Test Failed
 	@Override
 	public void onTestFailure(ITestResult result) {
 
-		testReport.get().fail(result.getThrowable());
+		test.get().fail(result.getThrowable());
 
-		String path = ExtentManager.captureScreenshot(getDriver());
+		String screenshotPath = ExtentManager.captureScreenshot(getDriver());
 
-		try {
-			testReport.get().fail("Screenshot", MediaEntityBuilder.createScreenCaptureFromPath(path).build());
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (screenshotPath != null) {
+			try {
+				test.get().fail("Screenshot", MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		Markup m = MarkupHelper.createLabel("TEST CASE FAILED", ExtentColor.RED);
-		testReport.get().log(Status.FAIL, m);
+
+		test.get().log(Status.FAIL, m);
 	}
 
+	// ⏭ Test Skipped
 	@Override
 	public void onTestSkipped(ITestResult result) {
 
 		Markup m = MarkupHelper.createLabel("TEST CASE SKIPPED", ExtentColor.YELLOW);
-		testReport.get().skip(m);
+
+		test.get().log(Status.SKIP, m);
 	}
 
+	// 🧹 Flush Report
 	@Override
 	public void onFinish(ITestContext context) {
+
 		if (extent != null) {
 			extent.flush();
 		}
