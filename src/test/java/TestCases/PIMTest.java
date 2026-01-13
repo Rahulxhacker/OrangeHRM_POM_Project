@@ -25,6 +25,7 @@ public class PIMTest extends BaseT {
 		pim.addEmployee(data.get("empFName"), data.get("empLName"));
 
 		Assert.assertTrue(pim.isEmployeeCreated(), data.get("empErrMsg"));
+		Assert.fail();
 
 	}
 }
